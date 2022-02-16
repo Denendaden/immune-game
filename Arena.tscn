@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Entities/Player/Macrophage.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Entities/Bacteria/Bacteria.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/Level.gd" type="Script" id=2]
 [ext_resource path="res://Arena.gd" type="Script" id=3]
 [ext_resource path="res://Fonts/LiberationSans-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://UI/Score.gd" type="Script" id=5]
@@ -26,6 +26,13 @@ font_data = ExtResource( 4 )
 [sub_resource type="Theme" id=3]
 default_font = SubResource( 4 )
 
+[sub_resource type="DynamicFont" id=5]
+size = 75
+font_data = ExtResource( 4 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
+
 [node name="Arena" type="Spatial"]
 script = ExtResource( 3 )
 
@@ -39,17 +46,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.052744, -0.342045, -0.01797
 transform = Transform( 0.955716, -0.173108, 0.237992, -0.0736497, 0.642274, 0.762928, -0.284926, -0.746671, 0.601082, 0, 4.87435, 6.39922 )
 light_energy = 0.413
 
-[node name="RigidBody" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.891046, 0.450598, -0.0547519, -0.453913, 0.88454, -0.10748, 0, 0.120622, 0.992698, 0.193606, 0.308947, -2.60279 )
-
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.1
 
 [node name="Control" type="Control" parent="."]
-anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -94.0
-margin_bottom = 40.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -66,4 +68,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LevelUp" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -42.0
+margin_right = 128.0
+margin_bottom = 42.0
+theme = SubResource( 6 )
+text = "Level 1"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Control/LevelUp"]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="point_gain" from="." to="Control/Score" method="_on_Arena_point_gain"]
+[connection signal="level_up" from="Control/Score" to="." method="_on_Score_level_up"]
+[connection signal="level_up" from="Control/Score" to="Control/LevelUp" method="_on_Score_level_up"]
+[connection signal="timeout" from="Control/LevelUp/Timer" to="Control/LevelUp" method="_on_Timer_timeout"]

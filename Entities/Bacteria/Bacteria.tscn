@@ -17,7 +17,7 @@ emission_on_uv2 = false
 radius = 0.1
 height = 0.283997
 
-[node name="RigidBody" type="RigidBody"]
+[node name="Bacteria" type="RigidBody"]
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 1 )
