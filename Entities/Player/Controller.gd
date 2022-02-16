@@ -7,7 +7,7 @@ var max_speed = 10  # Maximum speed allowed (past this no force will be applied 
 
 var half_length = 1  # Half the length of the macrophage (used to find the tip to apply torque)
 
-var move = false
+var move = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,9 +24,9 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("toggle_movement"):
 		move = !move
 	if Input.is_action_pressed("move_up"):
-		add_force(-dir_z * half_length, -dir_y * turn_force)
-	if Input.is_action_pressed("move_down"):
 		add_force(-dir_z * half_length, dir_y * turn_force)
+	if Input.is_action_pressed("move_down"):
+		add_force(-dir_z * half_length, -dir_y * turn_force)
 	if Input.is_action_pressed("move_right"):
 		add_force(-dir_z * half_length, -dir_x * turn_force)
 	if Input.is_action_pressed("move_left"):

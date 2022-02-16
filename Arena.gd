@@ -1,5 +1,7 @@
 extends Spatial
 
+signal point_gain
+
 onready var timer = $Timer
 onready var player = $Player
 
@@ -19,6 +21,7 @@ func _process(_delta):
 			if node.get_name() == player.name:
 				copy.erase(enemy)
 				enemy.queue_free()
+				emit_signal("point_gain")
 	enemies = copy
 
 func _on_Timer_timeout():
