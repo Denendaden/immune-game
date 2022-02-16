@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Entities/Player/Macrophage.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Entities/Bacteria/Bacteria.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Arena.gd" type="Script" id=3]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0.168627, 0.0196078, 0.0196078, 1 )
@@ -17,15 +18,20 @@ background_mode = 2
 background_sky = SubResource( 1 )
 
 [node name="Arena" type="Spatial"]
+script = ExtResource( 3 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.052744, -0.342045, -0.0179791 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.955716, -0.173108, 0.237992, -0.0736497, 0.642274, 0.762928, -0.284926, -0.746671, 0.601082, 0, 4.87435, 6.39922 )
 light_energy = 0.413
 
 [node name="RigidBody" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.40633, 0, -4.55674 )
+transform = Transform( 0.891046, 0.450598, -0.0547519, -0.453913, 0.88454, -0.10748, 0, 0.120622, 0.992698, 0.193606, 0.308947, -2.60279 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
