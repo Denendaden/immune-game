@@ -3,7 +3,7 @@ extends RigidBody
 
 var turn_force = 5   # Magnitude of force used to turn
 var move_force = 24  # Magnitude of force used to move forward
-var max_speed = 10  # Maximum speed allowed (past this no force will be applied to accelerate)
+var max_speed = 20  # Maximum speed allowed (past this no force will be applied to accelerate)
 
 var half_length = 1  # Half the length of the macrophage (used to find the tip to apply torque)
 
@@ -21,12 +21,11 @@ func _physics_process(_delta):
 	var dir_z = global_transform.basis.z
 	
 	# Apply forces to the tip of the macrophage to turn based on user input.
-	if Input.is_action_pressed("toggle_movement"):
-		move = !move
+	if Input.is_action_just_pressed("toggle_movement"): move = !move
 	if Input.is_action_pressed("move_up"):
-		add_force(-dir_z * half_length, dir_y * turn_force)
-	if Input.is_action_pressed("move_down"):
 		add_force(-dir_z * half_length, -dir_y * turn_force)
+	if Input.is_action_pressed("move_down"):
+		add_force(-dir_z * half_length, dir_y * turn_force)
 	if Input.is_action_pressed("move_right"):
 		add_force(-dir_z * half_length, -dir_x * turn_force)
 	if Input.is_action_pressed("move_left"):

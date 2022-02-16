@@ -5,7 +5,7 @@ signal point_gain
 
 var max_bacteria = 100
 var max_bacteria_distance = 50
-var bacteria_spawn_distance = 20
+var bacteria_spawn_distance = 15
 var start_bacteria = 30
 
 onready var timer = $Timer
