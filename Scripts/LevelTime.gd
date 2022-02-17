@@ -1,5 +1,7 @@
 extends Label
 
+signal lose
+
 onready var timer = $LevelTimer
 
 func _ready():
@@ -24,4 +26,4 @@ func _on_Timer_timeout():
 	timer.stop()
 
 func _on_LoseTimer_timeout():
-	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	emit_signal("lose")

@@ -114,6 +114,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LoseTimer" type="Timer" parent="Control/LevelUp"]
+wait_time = 2.0
+one_shot = true
+
 [node name="ShowTimer" type="Timer" parent="Control/LevelUp"]
 wait_time = 2.0
 one_shot = true
@@ -174,8 +178,10 @@ one_shot = true
 [connection signal="level_up" from="Control/Score" to="." method="_on_Score_level_up"]
 [connection signal="level_up" from="Control/Score" to="Control/LevelTime" method="_on_Score_level_up"]
 [connection signal="level_up" from="Control/Score" to="Control/LevelUp" method="_on_Score_level_up"]
+[connection signal="lose" from="Control/LevelTime" to="Control/LevelUp" method="_on_LevelTime_lose"]
 [connection signal="timeout" from="Control/LevelTime/LevelTimer" to="Player" method="_on_LevelTimer_timeout"]
 [connection signal="timeout" from="Control/LevelTime/LevelTimer" to="Control/GameOver" method="_on_Game_Lost"]
+[connection signal="timeout" from="Control/LevelUp/LoseTimer" to="Control/LevelUp" method="_on_LoseTimer_timeout"]
 [connection signal="timeout" from="Control/LevelUp/ShowTimer" to="Control/LevelUp" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Control/GameOver/LoseTimer" to="Control/LevelTime" method="_on_LoseTimer_timeout"]
 [connection signal="timeout" from="Control/GameOver/LoseTimer" to="Control/GameOver" method="_on_Timer_timeout"]
