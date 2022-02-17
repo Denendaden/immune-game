@@ -30,7 +30,7 @@ func _on_Arena_point_gain():
 	var next_score = find_val(score, level_up_points)
 	
 	# Refresh the score counter
-	text = str("Score: ", score, "\nBacteria Until Next Level: ", next_score-score)
+	text = str("Score: ", score, "\nTo Next Level: ", next_score-score)
 	
 	# Check for a level up
 	if score in level_up_points:

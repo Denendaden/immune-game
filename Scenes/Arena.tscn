@@ -25,7 +25,7 @@ background_mode = 2
 background_sky = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 42
+size = 36
 font_data = ExtResource( 3 )
 
 [sub_resource type="Theme" id=3]
@@ -39,7 +39,7 @@ font_data = ExtResource( 3 )
 default_font = SubResource( 7 )
 
 [sub_resource type="DynamicFont" id=9]
-size = 55
+size = 28
 font_data = ExtResource( 7 )
 
 [sub_resource type="Theme" id=10]
@@ -71,23 +71,20 @@ __meta__ = {
 [node name="Score" type="Label" parent="Control"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -560.0
-margin_right = -20.0
-margin_bottom = 99.0
+margin_left = -200.0
+margin_bottom = 66.0
 theme = SubResource( 3 )
-text = "Score: 0
-Bacteria Until Next Level: 3"
-align = 1
+text = "Score: 0"
+align = 2
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LevelTime" type="Label" parent="Control"]
-margin_left = 33.0
-margin_top = 2.0
-margin_right = 238.0
-margin_bottom = 50.0
+margin_left = 6.0
+margin_right = 211.0
+margin_bottom = 48.0
 theme = SubResource( 3 )
 text = "Timer: 2:00"
 script = ExtResource( 6 )
@@ -123,30 +120,26 @@ wait_time = 2.0
 one_shot = true
 
 [node name="BackButton" type="Button" parent="Control"]
-anchor_left = 0.732
-anchor_top = 0.84
-anchor_right = 0.732
-anchor_bottom = 0.84
-margin_left = 0.431946
-margin_top = -3.05176e-05
-margin_right = 248.432
-margin_bottom = 84.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 14.0
+margin_top = 6.0
+margin_right = 89.0
+margin_bottom = 44.0
 theme = SubResource( 10 )
-text = "Back"
+text = "Menu"
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PauseButton" type="Button" parent="Control"]
-anchor_left = 0.732
-anchor_top = 0.84
-anchor_right = 0.732
-anchor_bottom = 0.84
-margin_left = -710.568
-margin_top = -3.05176e-05
-margin_right = -462.568
-margin_bottom = 84.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -106.5
+margin_top = 6.0
+margin_right = -13.5
+margin_bottom = 44.0
 theme = SubResource( 10 )
 text = "Pause"
 script = ExtResource( 9 )
