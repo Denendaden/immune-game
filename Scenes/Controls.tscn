@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Fonts/LiberationSans-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Fonts/LiberationSans-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://BackButton.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/BackButton.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=5]
 size = 75
@@ -17,12 +17,12 @@ default_font = SubResource( 5 )
 size = 50
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=11]
 size = 55
 font_data = ExtResource( 2 )
 
 [sub_resource type="Theme" id=10]
-default_font = SubResource( 9 )
+default_font = SubResource( 11 )
 
 [node name="Controls" type="Control"]
 anchor_right = 1.0

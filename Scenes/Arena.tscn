@@ -1,11 +1,15 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Arena.gd" type="Script" id=1]
-[ext_resource path="res://UI/Level.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Arena.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Level.gd" type="Script" id=2]
 [ext_resource path="res://Fonts/LiberationSans-Bold.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://UI/Score.gd" type="Script" id=4]
-[ext_resource path="res://Entities/Player/Macrophage.tscn" type="PackedScene" id=5]
-[ext_resource path="res://LevelTime.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Score.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Macrophage.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/LevelTime.gd" type="Script" id=6]
+[ext_resource path="res://Fonts/LiberationSans-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Scripts/BackButton.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/PauseButton.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/GameOver.gd" type="Script" id=10]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0.168627, 0.0196078, 0.0196078, 1 )
@@ -34,6 +38,13 @@ font_data = ExtResource( 3 )
 [sub_resource type="Theme" id=6]
 default_font = SubResource( 7 )
 
+[sub_resource type="DynamicFont" id=9]
+size = 55
+font_data = ExtResource( 7 )
+
+[sub_resource type="Theme" id=10]
+default_font = SubResource( 9 )
+
 [node name="Arena" type="Spatial"]
 script = ExtResource( 1 )
 
@@ -60,10 +71,13 @@ __meta__ = {
 [node name="Score" type="Label" parent="Control"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -205.0
-margin_bottom = 48.0
+margin_left = -560.0
+margin_right = -20.0
+margin_bottom = 99.0
 theme = SubResource( 3 )
-text = "Score: 0"
+text = "Score: 0
+Bacteria Until Next Level: 3"
+align = 1
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -81,7 +95,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Timer" parent="Control/LevelTime"]
+[node name="LevelTimer" type="Timer" parent="Control/LevelTime"]
 wait_time = 120.0
 
 [node name="LevelUp" type="Label" parent="Control"]
@@ -100,12 +114,68 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Timer" parent="Control/LevelUp"]
+[node name="ShowTimer" type="Timer" parent="Control/LevelUp"]
+wait_time = 2.0
+one_shot = true
+
+[node name="BackButton" type="Button" parent="Control"]
+anchor_left = 0.732
+anchor_top = 0.84
+anchor_right = 0.732
+anchor_bottom = 0.84
+margin_left = 0.431946
+margin_top = -3.05176e-05
+margin_right = 248.432
+margin_bottom = 84.0
+theme = SubResource( 10 )
+text = "Back"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseButton" type="Button" parent="Control"]
+anchor_left = 0.732
+anchor_top = 0.84
+anchor_right = 0.732
+anchor_bottom = 0.84
+margin_left = -710.568
+margin_top = -3.05176e-05
+margin_right = -462.568
+margin_bottom = 84.0
+theme = SubResource( 10 )
+text = "Pause"
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -205.0
+margin_top = -42.0
+margin_right = 196.0
+margin_bottom = 42.0
+theme = SubResource( 6 )
+text = "Game Over"
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoseTimer" type="Timer" parent="Control/GameOver"]
 wait_time = 2.0
 one_shot = true
 
 [connection signal="point_gain" from="." to="Control/Score" method="_on_Arena_point_gain"]
 [connection signal="level_up" from="Control/Score" to="." method="_on_Score_level_up"]
-[connection signal="level_up" from="Control/Score" to="Control/LevelUp" method="_on_Score_level_up"]
 [connection signal="level_up" from="Control/Score" to="Control/LevelTime" method="_on_Score_level_up"]
-[connection signal="timeout" from="Control/LevelUp/Timer" to="Control/LevelUp" method="_on_Timer_timeout"]
+[connection signal="level_up" from="Control/Score" to="Control/LevelUp" method="_on_Score_level_up"]
+[connection signal="timeout" from="Control/LevelTime/LevelTimer" to="Player" method="_on_LevelTimer_timeout"]
+[connection signal="timeout" from="Control/LevelTime/LevelTimer" to="Control/GameOver" method="_on_Game_Lost"]
+[connection signal="timeout" from="Control/LevelUp/ShowTimer" to="Control/LevelUp" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Control/GameOver/LoseTimer" to="Control/LevelTime" method="_on_LoseTimer_timeout"]
+[connection signal="timeout" from="Control/GameOver/LoseTimer" to="Control/GameOver" method="_on_Timer_timeout"]

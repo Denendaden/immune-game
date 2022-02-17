@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Fonts/LiberationSans-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Fonts/LiberationSans-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://StartButton.gd" type="Script" id=3]
-[ext_resource path="res://ControlsButton.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/StartButton.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/ControlsButton.gd" type="Script" id=4]
 [ext_resource path="res://Fonts/LiberationSans-Italic.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=9]
@@ -47,18 +47,18 @@ __meta__ = {
 }
 
 [node name="TeamLabel" type="Label" parent="."]
-anchor_left = 0.336
-anchor_top = 0.242
-anchor_right = 0.336
-anchor_bottom = 0.242
-margin_left = -35.064
-margin_top = -2.20001
-margin_right = 357.936
-margin_bottom = 156.8
+anchor_left = 0.308
+anchor_top = 0.238
+anchor_right = 0.308
+anchor_bottom = 0.238
+margin_left = -5.39203
+margin_top = 0.199982
+margin_right = 387.608
+margin_bottom = 159.2
 theme = SubResource( 6 )
 custom_fonts/font = SubResource( 11 )
-text = "Max Ederington
-Krishna C. Bhatraju
+text = "Krishna Bhatraju
+Max Ederington
 Alex Kolyaskin"
 align = 1
 __meta__ = {
